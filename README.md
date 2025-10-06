@@ -1,4 +1,4 @@
- devops-technical-assignment
+Devops-technical-assignment
 Technical assignment for interview
 
  Автор: Елизабет Иванова
@@ -17,10 +17,10 @@ cert-checker-k8s.yaml -Kubernetes Job manifest to run the script once inside a M
 
 1.2. Execution (Minikube/K8s)
 Build Docker Image:
-  docker build -t ssl-checker:latest .
+  - docker build -t ssl-checker:latest .
 Load Image into K8s:
-  minikube image load ssl-checker:latest
+  - minikube image load ssl-checker:latest
 Run the K8s Job:
-  kubectl apply -f cert-checker-k8s.yaml
+  - kubectl apply -f cert-checker-k8s.yaml
 View Results:
-kubectl logs job/ssl-checker-job
+  - kubectl logs job/ssl-checker-job
