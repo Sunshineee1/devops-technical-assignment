@@ -36,14 +36,14 @@ check_ssl_expiry() {
     EXPIRY_DATE_RAW=$(echo -n | openssl s_client -servername "$DOMAIN" -connect "$DOMAIN":"$SSL_PORT" 2>/dev/null | openssl x509 -noout -enddate 2>/dev/null | awk -F= '{print $2}')
 #  Errors 
     if [ -z "$EXPIRY_DATE_RAW" ]; then
-        log_alert "ERROR" "$DOMAIN" "Не може да се извлече сертификатната информация. Домейнът е недостъпен или не поддържа SSL."
+        log_alert "ERROR" "$DOMAIN" "Unable to retrieve certificate information. Domain is unavailable or does not support SSL."
         echo "--------------------------"
         return 1
     fi
 # Format the date
     EXPIRY_SEC=$(date -d "$EXPIRY_DATE_RAW" +%s 2>/dev/null)
     if [ $? -ne 0 ]; then
-        log_alert "ERROR" "$DOMAIN" "Неуспешно парсване на датата: $EXPIRY_DATE_RAW"
+        log_alert "ERROR" "$DOMAIN" "Date parsing failed: $EXPIRY_DATE_RAW"
         echo "--------------------------"
         return 1
     fi
