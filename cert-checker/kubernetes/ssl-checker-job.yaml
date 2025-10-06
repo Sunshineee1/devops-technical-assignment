@@ -1,0 +1,13 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: ssl-checker-job
+spec:
+  template:
+    spec:
+      containers:
+      - name: ssl-checker-container
+        image: ssl-checker:latest
+        imagePullPolicy: Never
+        restartPolicy: OnFailure
+  backoffLimit: 4
