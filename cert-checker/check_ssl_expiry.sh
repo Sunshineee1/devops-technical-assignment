@@ -95,7 +95,7 @@ if [ ! -f "$CONFIG_FILE" ]; then
     exit 1
 fi
 
-# Четене на домейните ред по ред (Loop through domains)
+# Четене на домейните ред по ред
 while IFS= read -r DOMAIN || [[ -n "$DOMAIN" ]]; do
     if [[ "$DOMAIN" =~ ^#.* ]] || [[ -z "$DOMAIN" ]]; then
         continue
