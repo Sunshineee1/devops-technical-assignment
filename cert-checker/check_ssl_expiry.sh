@@ -20,18 +20,10 @@ log_alert() {
     local COLOR=$NC
     
     case "$SEVERITY" in
-        "CRITICAL")
-            COLOR=$RED
-            ;;
-        "WARNING")
-            COLOR=$YELLOW
-            ;;
-        "OK")
-            COLOR=$GREEN
-            ;;
-        "ERROR")
-            COLOR=$RED
-            ;;
+        "CRITICAL") COLOR=$RED ;;
+        "WARNING") COLOR=$YELLOW ;;
+        "OK") COLOR=$GREEN ;;
+        "ERROR") COLOR=$RED ;;
     esac
     
 # Отпечатва алармата
