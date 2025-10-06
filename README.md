@@ -21,7 +21,7 @@ This repository contains the solution for a technical assignment focusing on Cer
 This solution uses a Bash script to check the SSL/TLS expiry date for a list of domains, containerized with Docker, and orchestrated via Kubernetes.
 
 1.1. Components File Description
-- check_cert.sh - Bash script using openssl to extract expiry dates and calculate remaining days. Implements WARNING (30 days) and CRITICAL (7 days) thresholds.
+- check_ssl_expiry.sh - Bash script using openssl to extract expiry dates and calculate remaining days. Implements WARNING (30 days) and CRITICAL (7 days) thresholds.
 - domains.conf - Configuration file containing the list of domains to check.
 - Dockerfile
 - cert-checker-k8s.yaml - Kubernetes Job manifest to run the script once inside a Minikube/K8s cluster.
