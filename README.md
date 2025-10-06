@@ -2,7 +2,7 @@
 Technical assignment for interview
 
 # Автор: Елизабет Иванова
-# Дата:06.10.2025
+# Дата:06.10.2025 
 
 This repository contains the solution for a technical assignment focusing on Certificate Expiry Checking (Bash/Docker/K8s).
 
