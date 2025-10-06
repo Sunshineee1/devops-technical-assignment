@@ -12,7 +12,7 @@ log_alert() {
     local DOMAIN=$2
     local MESSAGE=$3
     
-    # ANSI цветове
+# ANSI цветове
     RED='\033[0;31m'
     YELLOW='\033[0;33m'
     GREEN='\033[0;32m'
@@ -38,14 +38,14 @@ check_ssl_expiry() {
     # 1. Извличане на сертификатната информация и датата на изтичане    
     EXPIRY_DATE_RAW=$(echo -n | openssl s_client -servername "$DOMAIN" -connect "$DOMAIN":"$SSL_PORT" 2>/dev/null | openssl x509 -noout -enddate 2>/dev/null | awk -F= '{print $2}')
 
-    # 2. Обработка на грешки при извличане
+# 2. Обработка на грешки 
     if [ -z "$EXPIRY_DATE_RAW" ]; then
         log_alert "ERROR" "$DOMAIN" "Не може да се извлече сертификатната информация. Домейнът е недостъпен или не поддържа SSL."
         echo "--------------------------"
         return 1
     fi
     
-    # 3. Парсване и форматиране на датата
+# 3. Взимане и форматиране на датата
     EXPIRY_SEC=$(date -d "$EXPIRY_DATE_RAW" +%s 2>/dev/null)
     if [ $? -ne 0 ]; then
         log_alert "ERROR" "$DOMAIN" "Неуспешно парсване на датата: $EXPIRY_DATE_RAW"
@@ -54,13 +54,13 @@ check_ssl_expiry() {
     fi
     TODAY_SEC=$(date +%s)
     
-    # Изчисляване на разликата в дни
+# Изчисляване на разликата в дни
     SECONDS_LEFT=$((EXPIRY_SEC - TODAY_SEC))
     DAYS_LEFT=$(echo "($SECONDS_LEFT / 86400)" | bc)
 
     EXPIRY_DATE_HUMAN=$(date -d "$EXPIRY_DATE_RAW" +'%Y-%m-%d %H:%M:%S %Z')
     
-    # 4. Дисплей на резултата и прилагане на прагове (Thresholds)
+# 4. Резултати
     
     # Проверка за изтекъл сертификат (Days Left < 0)
     if [ "$DAYS_LEFT" -lt 0 ]; then
