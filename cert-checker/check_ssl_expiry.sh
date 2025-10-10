@@ -6,6 +6,12 @@ WARNING_DAYS=30
 CRITICAL_DAYS=7    
 SSL_PORT=443
 
+#MAil settings
+
+Recipient="elizabeth.krasimirova@gmail.com"
+Sender="ssl-checker@sunshine.com"
+Subject="CRITICAL ALERT: SSL Certificate Expiry Check"
+
 # Functions for alerts
 log_alert() {
     local SEVERITY=$1
@@ -28,9 +34,14 @@ log_alert() {
 # Results
     echo -e "${COLOR}[$SEVERITY]${NC} - ${DOMAIN}: $MESSAGE"
 }
+
+# Sending email
+
+
+
 check_ssl_expiry() {
     local DOMAIN=$1
-    echo "--- Проверка на $DOMAIN ---"
+    echo "--- Cheking on $DOMAIN ---"
     
 #  Taking data and date of expiry   
     EXPIRY_DATE_RAW=$(echo -n | openssl s_client -servername "$DOMAIN" -connect "$DOMAIN":"$SSL_PORT" 2>/dev/null | openssl x509 -noout -enddate 2>/dev/null | awk -F= '{print $2}')

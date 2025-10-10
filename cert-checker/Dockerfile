@@ -1,7 +1,7 @@
 FROM alpine:latest
 
 RUN apk update && \
-    apk add openssl bash coreutils bc && \
+    apk add openssl bash coreutils bc mailx && \
     rm -rf /var/cache/apk/*
 
 WORKDIR /app
